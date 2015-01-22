@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+#DATABASE_PATH = os.path.join(BASE_DIR, 'db.sqlite3')
 
 # Application definition
 
