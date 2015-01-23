@@ -1,18 +1,10 @@
 from django.db import models
-
-from django.db import models
-
-class Ox(models.Model):
-    horn_length = models.IntegerField()
-
-    class Meta:
-        ordering = ["horn_length"]
-        verbose_name_plural = "oxen"
-
 # Create your models here.
 
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    views = models.IntegerField()
+    likes = models.IntegerField()
 
     def __unicode__(self):
         return self.name
