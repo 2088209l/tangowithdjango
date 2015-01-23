@@ -1,6 +1,13 @@
 from django.db import models
 # Create your models here.
 
+class Ox(models.Model):
+    horn_length = models.IntegerField()
+
+    class Meta:
+        ordering = ["horn_length"]
+        verbose_name_plural = "oxen"
+        
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
     views = models.IntegerField()
