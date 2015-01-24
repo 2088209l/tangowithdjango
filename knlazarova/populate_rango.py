@@ -25,8 +25,8 @@ def populate():
         url="http://www.korokithakis.net/tutorials/python/")
 
     django_cat = add_cat("Django",
-        views = 0,
-        likes = 0)
+        views = 333,
+        likes = 33)
 
     add_page(cat=django_cat,
         title="Official Django Tutorial",
