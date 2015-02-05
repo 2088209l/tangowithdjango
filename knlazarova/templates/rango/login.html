@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
-        <title>Rango</title>
-    </head>
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
 
     <body>
         <h1>Login to Rango</h1>
@@ -19,4 +22,5 @@
         </form>
 
     </body>
+	{%endblock%}
 </html>

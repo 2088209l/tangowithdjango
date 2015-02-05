@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Rango</title>
-    </head>
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
 
     <body>
         <h1>Add a Category</h1>
@@ -22,6 +26,7 @@
 
             <input type="submit" name="submit" value="Create Category" />
         </form>
+		{%endblock%}
     </body>
 
 </html>

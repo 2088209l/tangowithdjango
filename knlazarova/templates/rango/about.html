@@ -1,18 +1,20 @@
 <!DOCTYPE html>
+{% extends 'base.html' %}
 
 {% load staticfiles %}
 
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
+
 <html>
-
-    <head>
-        <title>Kristina</title>
-    </head>
-
     <body>
         <h1> Kristina says</h1>
 		<strong>{{ boldmessage }}</strong><br />
-        <a href="/rango/">Index</a><br /> This tutorial has been put together by Kristina Lazarova: 2088209l </br>
+        
+		<br>This tutorial has been put together by Kristina Lazarova: 2088209l </br>
         <img src="{% static "images/Kristina.jpg" %}" alt="dog" />
     </body>
+	{%endblock%}
 
 </html>

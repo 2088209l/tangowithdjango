@@ -8,6 +8,7 @@ from rango.forms import PageForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from rango.forms import UserForm, UserProfileForm
 
 def index (request):
     # Query the database for a list of ALL categories currently stored.
@@ -104,12 +105,12 @@ def add_page(request, category_name_slug):
         else:
             print form.errors
     else:
-        form = PageForm()
+        form = PageForm()    
 
     context_dict = {'form':form, 'category': cat, 'category_name_slug': category_name_slug}
 
     return render(request, 'rango/add_page.html', context_dict)
-from rango.forms import UserForm, UserProfileForm
+
 
 def register(request):
 
@@ -208,7 +209,7 @@ def user_login(request):
 
 @login_required
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text!")
+    return render (request, 'rango/restricted.html', {})
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required

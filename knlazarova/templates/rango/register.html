@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Rango</title>
-    </head>
+{% extends 'base.html' %}
 
+{% load staticfiles %}
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
     <body>
         <h1>Register with Rango</h1>
 
@@ -29,4 +32,5 @@
         </form>
         {% endif %}
     </body>
+	{%endblock%}
 </html>
