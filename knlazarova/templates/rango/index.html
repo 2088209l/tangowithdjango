@@ -11,6 +11,7 @@
 
 
     <body>
+	
         {% if user.is_authenticated %}
 		<h1>Rango says... hello {{ user.username }}!</h1>
 		{% else %}
@@ -34,8 +35,6 @@
 			<li> <a href="{{page.url}}">{{page.title}}</a></li>
 			{% endfor %}
 			</ol>
-
     </body>
 	{%endblock%}
-	
 </html>
