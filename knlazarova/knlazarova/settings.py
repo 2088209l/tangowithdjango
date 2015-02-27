@@ -30,7 +30,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration',
     'bootstrap_toolkit',
-    'rango',
+    'rango',  
 )
 
 REGISTRATION_OPEN = True                # If True, users can register
