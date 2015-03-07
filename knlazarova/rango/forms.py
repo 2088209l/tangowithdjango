@@ -52,6 +52,7 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 class UserProfileForm(forms.ModelForm):
+    picture = forms.ImageField(help_text="Select a profile image to upload.", required=False)
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
