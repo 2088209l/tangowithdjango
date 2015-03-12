@@ -79,11 +79,11 @@ def category(request, category_name_slug):
         pages = Page.objects.filter(category=category).order_by('-views')
         context_dict['pages'] = pages
         context_dict['category'] = category
+
+        if not context_dict['query']:
+            context_dict['query'] = category.name
     except Category.DoesNotExist:
         pass
-
-    if not context_dict['query']:
-        context_dict['query'] = category.name
 
     return render(request, 'rango/category.html', context_dict)
 
@@ -128,8 +128,7 @@ def add_page(request, category_name_slug):
                 page.category = cat
                 page.views = 0
                 page.save()
-                # probably better to use a redirect here.
-                return category(request, category_name_slug)
+                return redirect('/rango/')
         else:
             print form.errors
     else:
@@ -171,6 +170,54 @@ def track_url(request):
                 pass
 
     return redirect(url)
+
+@login_required
+def register_profile(request):
+    if request.method == 'POST':
+        profile_form = UserProfileForm(data=request.POST)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.user = User.objects.get(id=request.user.id)
+            if 'picture' in request.FILES:
+                try:
+                    profile.picture = request.FILES['picture']
+                except:
+                    pass
+                profile.save()
+                return redirect('index')
+    else:
+        profile_form = UserProfileForm()
+    return render(request, 'registration/profile_registration.html', {'profile_form': profile_form})
+
+@login_required
+def edit_profile(request):
+    try:
+        users_profile = UserProfile.objects.get(user=request.user)
+    except:
+        users_profile = None
+    if request.method == 'POST':
+        profile_form = UserProfileForm(data=request.POST, instance=users_profile)
+        if profile_form.is_valid():
+            profile_updated = profile_form.save(commit=False)
+            if users_profile is None:
+                profile_updated.user = User.objects.get(id=request.user.id)
+            if 'picture' in request.FILES:
+                try:
+                    profile_updated.picture = request.FILES['picture']
+                except:
+                        pass
+            profile_updated.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=users_profile)
+        return render(request, 'registration/profile_edit.html', {'profile_form': form})
+
+
+@login_required
+def user_list(request):
+    users = User.objects.all()
+    return render(request, 'registration/user_list.html', {'users': users})
+
 
 @login_required
 def profile(request):

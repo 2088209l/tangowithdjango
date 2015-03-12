@@ -32,12 +32,14 @@
             The specified category {{ category_name }} does not exist!
         {% endif %}
 
+{% if category %}
  <form class="form-inline" id="user_form" method="post" action="{% url 'category'  category.slug %}">
      {% csrf_token %}
      <!-- Display the search form elements here -->
      <input class="form-control" type="text" size="50" name="query" value="{{query}}" id="query" />
      <input class="btn btn-primary" type="submit" name="submit" value="Search" />
 </form>
+{% endif %}
 
 <div class="panel">
         {% if result_list %}
